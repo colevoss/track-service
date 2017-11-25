@@ -4,11 +4,12 @@
   "description": "Group service for Adio project",
   "main": "handler.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test jest --forceExit",
     "deploy:prod": "serverless deploy -s prod -v",
     "deploy:branch": "serverless deploy --config dev",
     "deploy:dev": "serverless deploy -s dev",
-    "local": "serverless offline start --config local"
+    "local": "serverless offline start --config local",
+    "test:ci": "NODE_ENV=test jest --forceExit"
   },
   "devDependencies": {
     "@types/jest": "^21.1.4",
