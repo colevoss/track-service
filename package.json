@@ -9,7 +9,7 @@
     "deploy:branch": "serverless deploy --config dev",
     "deploy:dev": "serverless deploy -s dev",
     "local": "serverless offline start --config local",
-    "test:ci": "NODE_ENV=test jest --forceExit"
+    "test:ci": "NODE_ENV=test jest --forceExit --runInBand"
   },
   "devDependencies": {
     "@types/jest": "^21.1.4",
