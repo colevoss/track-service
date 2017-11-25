@@ -1,0 +1,72 @@
+service:
+  name: track-service
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, 'dev'}
+  environment:
+    MONGO_DB_URI: ${env:MONGO_DB_URI, file(./config/${self:custom.config}.js):db.uri}
+    MONGO_DB_NAME: ${env:MONGO_DB_NAME, file(./config/${self:custom.config}.js):db.name}-${self:custom.config}
+    MONGO_DB_PARAMS: ${env:MONGO_DB_PARAMS, file(./config/${self:custom.config}.js):db.params}
+
+functions:
+  getTrack:
+    handler: handlers/getTrack.getTrackHandler
+    events:
+      - http:
+          method: get
+          path: tracks/{id}
+
+  getManyTracks:
+    handler: handlers/getManyTracks.getManyTracksHandler
+    events:
+      - http:
+          method: get
+          path: tracks
+
+  createTrack:
+    handler: handlers/createTrack.createTrackHandler
+    events:
+      - http:
+          method: post
+          path: tracks
+
+  deleteTrack:
+    handler: handlers/deleteTrack.deleteTrackHandler
+    events:
+      - http:
+          method: delete
+          path: tracks/{id}
+
+  updateTrack:
+    handler: handlers/updateTrack.updateTrackHandler
+    events:
+      - http:
+          method: put
+          path: tracks/{id}
+
+  addClip:
+    handler: handlers/addClip.addClipHandler
+    events:
+      - http:
+          method: put
+          path: tracks/{id}/clips
+
+  removeClip:
+    handler: handlers/removeClip.removeClipHandler
+    events:
+      - http:
+          method: delete
+          path: tracks/{id}/clips/{clipId}
+
+custom:
+  config: ${opt:config, self:provider.stage}
+  webpackIncludeModules: true
+  serverless-offline:
+    port: 4000

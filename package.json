@@ -1,0 +1,41 @@
+{
+  "name": "adio-track-service",
+  "version": "1.0.0",
+  "description": "Group service for Adio project",
+  "main": "handler.js",
+  "scripts": {
+    "test": "NODE_ENV=test jest",
+    "deploy:prod": "serverless deploy -s prod -v",
+    "deploy:branch": "serverless deploy --config dev",
+    "deploy:dev": "serverless deploy -s dev",
+    "local": "serverless offline start --config local"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.4",
+    "jest": "^21.2.1",
+    "serverless": "^1.23.0",
+    "serverless-offline": "^3.16.0",
+    "serverless-webpack": "^3.0.0",
+    "ts-loader": "^2.3.7",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "author": "Cole Voss <voss.cole@gmail.com> (https://github.com/colevoss)",
+  "license": "MIT",
+  "dependencies": {
+    "@types/aws-lambda": "^0.0.17",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/config": "^0.0.33",
+    "@types/mongodb": "^2.2.13",
+    "config": "^1.27.0",
+    "mongodb": "^2.2.33"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/jestPreprocessor.js"
+    },
+    "testMatch": ["**/__tests__/*.(ts|tsx|js)"]
+  }
+}
