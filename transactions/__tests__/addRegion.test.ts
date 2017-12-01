@@ -1,6 +1,6 @@
 import { Db as IDb, ObjectId } from 'mongodb';
 import { ITrack, ITrackInput } from '../../types/ITrack';
-import { addClip } from '../addClip';
+import { addRegion } from '../addRegion';
 import { mongo } from '../../utils/mongo';
 
 let db: IDb;
@@ -20,19 +20,19 @@ afterAll(async () => {
   await db.close();
 });
 
-test('Adds a clip id to the track', async () => {
-  const track = await addClip(db, trackId, clipId);
+test('Adds a region id to the track', async () => {
+  const track = await addRegion(db, trackId, clipId);
 
-  const clipIds = track.clipIds;
+  const clipIds = track.regionIds;
 
   expect(clipIds).toHaveLength(1);
   expect(clipIds[0].toHexString()).toBe(clipId);
 });
 
-test('Adding a duplicate clip id does not duplicate it', async () => {
-  const track = await addClip(db, trackId, clipId);
+test('Adding a duplicate region id does not duplicate it', async () => {
+  const track = await addRegion(db, trackId, clipId);
 
-  const clipIds = track.clipIds;
+  const clipIds = track.regionIds;
 
   expect(clipIds).toHaveLength(1);
 });

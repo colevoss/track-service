@@ -51,22 +51,22 @@ functions:
           method: put
           path: tracks/{id}
 
-  addClip:
-    handler: handlers/addClip.addClipHandler
+  addRegion:
+    handler: handlers/addRegion.addRegionHandler
     events:
       - http:
           method: put
-          path: tracks/{id}/clips
+          path: tracks/{id}/regions
 
-  removeClip:
-    handler: handlers/removeClip.removeClipHandler
+  removeRegion:
+    handler: handlers/removeRegion.removeRegionHandler
     events:
       - http:
           method: delete
-          path: tracks/{id}/clips/{clipId}
+          path: tracks/{id}/regions/{regionId}
 
 custom:
   config: ${opt:config, self:provider.stage}
   webpackIncludeModules: true
   serverless-offline:
-    port: 4000
+    port: 4002

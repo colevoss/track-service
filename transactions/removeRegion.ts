@@ -2,8 +2,12 @@ import { Db as IDb, ObjectId } from 'mongodb';
 import { ITrack } from '../types/ITrack';
 import { getTrack } from './getTrack';
 
-export const removeClip = async (db: IDb, trackId: string | ObjectId, clipId: string | ObjectId): Promise<ITrack> => {
-  const clipOId = new ObjectId(clipId);
+export const removeRegion = async (
+  db: IDb,
+  trackId: string | ObjectId,
+  regionId: string | ObjectId
+): Promise<ITrack> => {
+  const regionOid = new ObjectId(regionId);
   const trackOId = new ObjectId(trackId);
 
   const trackUpdate = await db.collection('tracks').findOneAndUpdate(
@@ -12,7 +16,7 @@ export const removeClip = async (db: IDb, trackId: string | ObjectId, clipId: st
     },
     {
       $pull: {
-        clipIds: clipOId,
+        regionIds: regionOid,
       },
     }
   );

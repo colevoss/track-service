@@ -10,9 +10,9 @@ const oPid = new ObjectId(pid);
 const trackInput = {
   name: 'test-track',
   projectId: oPid,
-  vol: 0,
+  volume: 0,
   color: '444444',
-  clipIds: [new ObjectId(pid)],
+  regionIds: [new ObjectId(pid)],
   order: 1,
 };
 
@@ -33,10 +33,10 @@ beforeAll(async () => {
     name: 'test-track-updated',
     projectId: new ObjectId('59dc2f34eafc40e0d61b6297'),
     color: '000000',
-    vol: -0.4,
+    volume: -0.4,
     id: trackId.toHexString(),
     _id: trackId,
-    clipIds: [new ObjectId(pid), new ObjectId(pid)],
+    regionIds: [new ObjectId(pid), new ObjectId(pid)],
     order: 10,
   };
 
@@ -50,7 +50,7 @@ afterAll(async () => {
 
 test('Updates the exisiting track by id', () => {
   expect(updatedTrack.color).toBe(updateTrackData.color);
-  expect(updatedTrack.vol).toBe(updateTrackData.vol);
+  expect(updatedTrack.volume).toBe(updateTrackData.volume);
 });
 
 describe('Does not update certain keys', () => {
@@ -58,8 +58,8 @@ describe('Does not update certain keys', () => {
     expect(updatedTrack.order).toBe(1);
   });
 
-  test('.clipIds', () => {
-    expect(updatedTrack.clipIds).toHaveLength(1);
+  test('.regionIds', () => {
+    expect(updatedTrack.regionIds).toHaveLength(1);
   });
 
   test('.projectId', () => {

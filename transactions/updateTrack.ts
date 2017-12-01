@@ -7,7 +7,7 @@ export const updateTrack = async (
   trackId: string | ObjectId,
   trackData: ITrackUpdateInput
 ): Promise<ITrack> => {
-  const { id, _id, projectId, order, clipIds, ...trackUpdateData } = trackData;
+  const { id, _id, projectId, order, regionIds, ...trackUpdateData } = trackData;
 
   const trackOId = new ObjectId(trackId);
 

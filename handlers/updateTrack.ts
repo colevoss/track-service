@@ -1,6 +1,7 @@
 import { APIGatewayEvent, Context, ProxyCallback } from 'aws-lambda';
 import { mongo } from '../utils/mongo';
 import { makeResponse } from '../utils/makeResponse';
+import { getTrack } from '../transactions/getTrack';
 import { updateTrack } from '../transactions/updateTrack';
 import { ITrackUpdateInput } from '../types/ITrack';
 
@@ -16,6 +17,8 @@ export const updateTrackHandler = async (
 
   try {
     const db = await mongo();
+
+    const track = await getTrack(db, trackId);
 
     const updatedTrack = await updateTrack(db, trackId, updateTrackData);
 

@@ -2,11 +2,11 @@ import { Db as IDb, ObjectId } from 'mongodb';
 import { ITrackInput } from '../types/ITrack';
 
 const generateDefaultTrackData = () => ({
-  vol: 0,
+  volume: 0,
   color: 'FFFFFF',
   muted: false,
   soloed: false,
-  clipIds: [],
+  regionIds: [],
   name: 'untitled',
 });
 

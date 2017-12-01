@@ -49,9 +49,9 @@ test('Sets order to be next track in project', () => {
 });
 
 test('Generates defaults for other values', () => {
-  expect(track).toHaveProperty('vol', 0);
+  expect(track).toHaveProperty('volume', 0);
   expect(track).toHaveProperty('muted', false);
   expect(track).toHaveProperty('soloed', false);
   expect(track).toHaveProperty('color', 'FFFFFF');
-  expect(track).toHaveProperty('clipIds', []);
+  expect(track).toHaveProperty('regionIds', []);
 });

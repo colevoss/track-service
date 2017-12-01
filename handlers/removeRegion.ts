@@ -1,18 +1,22 @@
 import { APIGatewayEvent, Context, ProxyCallback } from 'aws-lambda';
 import { mongo } from '../utils/mongo';
 import { makeResponse } from '../utils/makeResponse';
-import { removeClip } from '../transactions/removeClip';
+import { removeRegion } from '../transactions/removeRegion';
 
-export const removeClipHandler = async (event: APIGatewayEvent, context: Context, cb: ProxyCallback): Promise<void> => {
+export const removeRegionHandler = async (
+  event: APIGatewayEvent,
+  context: Context,
+  cb: ProxyCallback
+): Promise<void> => {
   context.callbackWaitsForEmptyEventLoop = false;
 
   const trackId = event.pathParameters.id;
-  const clipId = event.pathParameters.clipId;
+  const regionId = event.pathParameters.clipId;
 
   try {
     const db = await mongo();
 
-    const track = await removeClip(db, trackId, clipId);
+    const track = await removeRegion(db, trackId, regionId);
 
     cb(null, makeResponse(200, { track }));
   } catch (e) {

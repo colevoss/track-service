@@ -8,10 +8,10 @@ export interface ITrack {
   muted: boolean;
   soloed: boolean;
 
-  vol: number;
+  volume: number;
   color: string;
 
-  clipIds: ObjectId[];
+  regionIds: ObjectId[];
   projectId: ObjectId;
 
   order: number;
